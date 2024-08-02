@@ -1,12 +1,69 @@
 package tw.brad.apis;
 
+import java.util.Random;
+
 public class TWId {
 	private String id;
+	static String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+
+	public TWId() {
+		// super(); this()
+		this(new Random().nextInt(2) == 0);
+	}
+	public TWId(boolean isMale) {
+		this(isMale, letters.charAt(new Random().nextInt(26)));
+	}
+	public TWId(char area) {
+		this(new Random().nextInt(2) == 0 , area);
+	}
+	public TWId(boolean isMale, char area) {
+		// super();
+		String c1 = new String(new char[] {area});
+		StringBuffer sb = new StringBuffer(c1);
+		sb.append(isMale?"1":"2");
+		for (int i=0; i<7; i++) sb.append(new Random().nextInt(10));
+		
+		for (int i=0; i<10; i++) {
+			if (isRight(sb.toString()+i)) {
+				id = sb.toString()+i;
+				break;
+			}
+		}
+	}
+	
+	private TWId(String id) {
+		this.id = id;
+	}
+	
+	public static TWId newTWId(String id) {
+		if (isRight(id)) {
+			return new TWId(id);
+		}else {
+			return null;	// throw new Exception();
+		}
+	}
+	
+	
+	public String getId() {
+		return id;
+	}
+	
+	public boolean isMale() {
+		
+		return true;
+	}
+
+	
+	
+	
+	
+	
+	
+	
 	
 	public static boolean isRight(String id) {
 		boolean isRight = false;
-		String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO"; 
-		
+		 
 //		if (id.length() == 10) {
 //			if (letters.indexOf(id.charAt(0)) != -1) {
 //				if (id.charAt(1) == '1' || id.charAt(1) == '2') {
@@ -14,7 +71,6 @@ public class TWId {
 //				}
 //			}
 //		}
-		
 		if (id.matches("[A-Z][12][0-9]{8}")) {
 			char c1 = id.charAt(0);
 			int a12 = letters.indexOf(c1) + 10;
