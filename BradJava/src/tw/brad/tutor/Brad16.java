@@ -32,6 +32,10 @@ public class Brad16 {
 		
 		System.out.println("Brad".charAt(0));
 		
+		System.out.println(s3.concat("Chao"));
+		System.out.println(s3);
+		
+		
 		
 	}
 
