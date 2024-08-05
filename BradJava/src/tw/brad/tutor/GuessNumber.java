@@ -1,6 +1,7 @@
 package tw.brad.tutor;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,6 +25,8 @@ public class GuessNumber extends JFrame implements ActionListener {
 		input = new JTextField();
 		guess = new JButton("猜");
 		log = new JTextArea();
+		
+		input .setFont(new Font(null, Font.BOLD|Font.ITALIC, 36));
 		
 		setLayout(new BorderLayout());
 		
@@ -83,6 +86,9 @@ public class GuessNumber extends JFrame implements ActionListener {
 		counter++;
 		
 		String g = input.getText();
+		
+		
+		
 		String result = checkAB(g, answer);
 		log.append(String.format("%d. %s => %s\n", counter, g, result));
 		
