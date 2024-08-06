@@ -13,12 +13,15 @@ import javax.swing.JPanel;
 
 public class MyPanelV2 extends JPanel {
 	private LinkedList<Line> lines, recycle;
+	private Color nowColor;
 	
 	public MyPanelV2() {
 		setBackground(Color.YELLOW);
 		
 		lines = new LinkedList<>();
 		recycle = new LinkedList<>();
+		
+		nowColor = Color.BLACK;
 		MyListener myListener = new MyListener();
 		
 		addMouseListener(myListener);
@@ -30,7 +33,7 @@ public class MyPanelV2 extends JPanel {
 		public void mousePressed(MouseEvent e) {
 			recycle.clear();
 			
-			Line line = new Line(Color.RED, 4);
+			Line line = new Line(nowColor, 4);
 			Point point = new Point(e.getX(), e.getY());
 			line.addPoint(point);
 			
@@ -84,6 +87,14 @@ public class MyPanelV2 extends JPanel {
 			lines.add(recycle.removeLast());
 			repaint();
 		}
+	}
+	
+	public Color getColor() {
+		return nowColor;
+	}
+	
+	public void setColor(Color color) {
+		nowColor = color;
 	}
 	
 }
