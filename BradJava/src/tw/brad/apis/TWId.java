@@ -31,17 +31,24 @@ public class TWId {
 		}
 	}
 	
-	private TWId(String id) {
-		this.id = id;
-	}
-	
-	public static TWId newTWId(String id) {
+	public TWId(String id) throws Exception {
 		if (isRight(id)) {
-			return new TWId(id);
+			this.id = id;
 		}else {
-			return null;	// throw new Exception();
+			throw new Exception();
 		}
 	}
+	
+//	private TWId(String id) {
+//		this.id = id;
+//	}
+//	public static TWId newTWId(String id) {
+//		if (isRight(id)) {
+//			return new TWId(id);
+//		}else {
+//			return null;	// throw new Exception();
+//		}
+//	}
 	
 	
 	public String getId() {

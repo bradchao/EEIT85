@@ -16,13 +16,13 @@ public class Brad17 {
 		TWId id2 = new TWId(false);
 		TWId id3 = new TWId('B');
 		TWId id4 = new TWId(true, 'Y');
-		TWId id5 = TWId.newTWId("Y120239847");
+		//TWId id5 = TWId.newTWId("Y120239847");
 		
 		System.out.println(id1.getId());
 		System.out.println(id2.getId());
 		System.out.println(id3.getId());
 		System.out.println(id4.getId());
-		System.out.println(id5.getId());
+		//System.out.println(id5.getId());
 		
 		
 	}
