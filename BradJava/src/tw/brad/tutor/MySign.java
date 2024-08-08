@@ -5,10 +5,13 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import tw.brad.apis.MyPanelV2;
@@ -89,10 +92,27 @@ public class MySign extends JFrame{
 	}
 	
 	private void saveObject() {
-		
+		JFileChooser jfc = new JFileChooser();
+		if (jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+			File file = jfc.getSelectedFile();
+			try {
+				myPanel.saveLines(file);
+				JOptionPane.showMessageDialog(null, "Save Success");
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Save Failure");
+			}
+		}
 	}
 	private void loadObject() {
-		
+		JFileChooser jfc = new JFileChooser();
+		if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+			File file = jfc.getSelectedFile();
+			try {
+				myPanel.loadLines(file);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Load Failure");
+			}
+		}
 	}
 	
 	
