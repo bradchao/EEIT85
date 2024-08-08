@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class MyPanelV2 extends JPanel {
@@ -115,6 +117,15 @@ public class MyPanelV2 extends JPanel {
 			lines = (LinkedList<Line>)obj;
 			repaint();
 		}
+		
+	}
+	
+	public void saveJPEG() throws Exception {
+		BufferedImage img = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics g = img.getGraphics();
+		paint(g);
+		
+		ImageIO.write(img, "jpg", new File("dir1/brad.jpg"));
 		
 	}
 	
