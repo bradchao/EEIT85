@@ -29,12 +29,12 @@ public class Brad51 {
 		
 	}
 }
-class Brad511  implements Serializable{
+class Brad511 {
 	Brad511(){System.out.println("Brad511()");}
 }
 class Brad512 extends Brad511{
 	Brad512(){System.out.println("Brad512()");}
 }
-class Brad513 extends Brad512  {
+class Brad513 extends Brad512  implements Serializable {
 	Brad513(){System.out.println("Brad513()");}
 }
