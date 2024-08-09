@@ -13,7 +13,7 @@ public class Brad53 {
 		try {
 			DatagramSocket socket = new DatagramSocket();
 			DatagramPacket packet = new DatagramPacket(mesgBuf, mesgBuf.length, 
-					InetAddress.getByName("10.0.100.101"), 8888);
+					InetAddress.getByName("10.0.100.163"), 8889);
 			socket.send(packet);
 			socket.close();
 			System.out.println("OK");
