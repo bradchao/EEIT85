@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
 	private BufferedImage ballImg;
-	private int ballX, ballY, ballW, ballH;
+	private int ballX, ballY, ballW, ballH, viewW, viewH, dx, dy;
 	private Timer timer;
 	
 	public GamePanel() {
@@ -31,11 +31,16 @@ public class GamePanel extends JPanel {
 		timer = new Timer();
 		timer.schedule(new BallTask(), 1*1000, 30);
 		
+		ballX = ballY = 1;
+		dx = dy = 8;
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		viewW = getWidth(); viewH = getHeight();
+		//System.out.println(viewW + ":" + viewH);
+
 		
 		g.drawImage(ballImg, ballX, ballY, null);
 		
@@ -44,8 +49,15 @@ public class GamePanel extends JPanel {
 	private class BallTask extends TimerTask {
 		@Override
 		public void run() {
-			ballX += 4;
-			ballY += 4;
+			if (ballX <= 0 || ballX + ballW >= viewW) {
+				dx *= -1;
+			}
+			if (ballY <= 0 || ballY + ballH >= viewH) {
+				dy *= -1;
+			}
+			
+			ballX += dx;
+			ballY += dy;
 			repaint();
 		}
 	}
