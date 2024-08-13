@@ -66,10 +66,10 @@ public class GamePanelV2 extends JPanel {
 		
 		public BallTask(int x, int y) {
 			this.x = x; this.y = y;
-			dx = (int)(Math.random()*9) - 4;	// -4 ~ +4
-			dy = (int)(Math.random()*9) - 4;	// -4 ~ +4
+			dx = (int)(Math.random()*17) - 8;	// -4 ~ +4
+			dy = (int)(Math.random()*17) - 8;	// -4 ~ +4
 			img = (int)(Math.random()*4);
-			System.out.printf("%d : %d", dx, dy);
+			//System.out.printf("%d : %d", dx, dy);
 		}
 		
 		public int getX() {
