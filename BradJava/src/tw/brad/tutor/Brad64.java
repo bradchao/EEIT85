@@ -2,7 +2,15 @@ package tw.brad.tutor;
 
 public class Brad64 {
 	public static void main(String[] args) {
-
+		Store store = new Store();
+		Producer p = new Producer(store);
+		Consumer c1 = new Consumer(store, "Brad");
+		Consumer c2 = new Consumer(store, "Amy");
+		Consumer c3 = new Consumer(store, "Tony");
+		p.start();
+		c1.start();
+		c2.start();
+		c3.start();
 	}
 }
 class Store {
@@ -28,7 +36,7 @@ class Store {
 			wait();
 		}
 		qty -= buy;
-		System.out.printf("完成賣出: %d, 目前庫存: %d\n", buy, qty);
+		System.out.printf("完成賣出: %d(%s), 目前庫存: %d\n", buy, name, qty);
 		notify();
 	}
 }
