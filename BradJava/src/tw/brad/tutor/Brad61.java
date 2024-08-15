@@ -9,6 +9,7 @@ import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.Properties;
 
 import org.json.JSONArray;
@@ -44,13 +45,18 @@ public class Brad61 {
 		System.out.println(root.length());
 		
 		
-		String url = "jdbc:mysql://127.0.0.1:3306/brad";
+		String url = "jdbc:mysql://127.0.0.1:3306/iii";
 		Properties prop = new Properties();
 		prop.put("user", "root");
 		prop.put("password", "root");
 		
 		try{
 			Connection conn = DriverManager.getConnection(url, prop);
+			
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("DELETE FROM gift");
+			stmt.executeUpdate("ALTER TABLE gift AUTO_INCREMENT = 1");
+			
 			String sql = "INSERT INTO gift (name,feature,addr,picurl,city,town,lat,lng)" + 
 					" VALUES (?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
