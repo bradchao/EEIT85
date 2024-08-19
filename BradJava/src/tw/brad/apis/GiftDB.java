@@ -74,6 +74,21 @@ public class GiftDB {
 		return fields;
 	}
 	
+	public void delData(int row) throws SQLException {
+		rs.absolute(row+1);
+		rs.deleteRow();
+	}
+	
+	public void updateData(String newdata, int row, int col) {
+		try {
+			rs.absolute(row+1);
+			rs.updateString(col+1, newdata);
+			rs.updateRow();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		
+	}
 	
 	
 }

@@ -20,6 +20,16 @@ public class GiftTable extends JTable {
 		setModel(model);
 		
 	}
+	
+	public void delRow() {
+		try {
+			db.delData(getSelectedRow());
+			repaint();
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 
 	private class GiftModel extends DefaultTableModel {
 
@@ -36,6 +46,16 @@ public class GiftTable extends JTable {
 		@Override
 		public Object getValueAt(int row, int column) {
 			return db.getData(row, column);
+		}
+
+		@Override
+		public void setValueAt(Object aValue, int row, int column) {
+			db.updateData((String)aValue, row, column);
+		}
+
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			return column != 0;
 		}
 		
 		

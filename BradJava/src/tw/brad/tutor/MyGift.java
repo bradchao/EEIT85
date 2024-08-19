@@ -40,7 +40,7 @@ public class MyGift extends JFrame{
 		del.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				giftTable.delRow();
 			}
 		});
 	}
