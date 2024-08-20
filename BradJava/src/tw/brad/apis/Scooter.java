@@ -21,11 +21,12 @@ public class Scooter extends Bike {
 		}
 	}
 	
-	public void upSpeed() {
+	public Bike upSpeed() {
 		super.upSpeed();
 		if (gear > 0) {
 			speed = speed < 1? 1 :speed * 1.8 * gear;
 		}
+		return this;
 	}
 	
 	public String getColor() {

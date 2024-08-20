@@ -9,8 +9,9 @@ public class Bike extends Object implements Serializable{
 		System.out.println("Bike()");
 	}
 	
-	public void upSpeed() {
+	public Bike upSpeed() {
 		speed = speed < 1? 1 :speed * 1.4;
+		return this;
 	}
 	
 	public void downSpeed() {
