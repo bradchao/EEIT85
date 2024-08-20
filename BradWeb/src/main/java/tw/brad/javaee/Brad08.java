@@ -24,8 +24,14 @@ public class Brad08 extends HttpServlet {
 			throws ServletException, IOException {
 		String account = request.getParameter("account");
 		String passwd = request.getParameter("passwd");
+		String[] habbit = request.getParameterValues("habbit");
 		System.out.println("doPost");
-		System.out.printf("%s, %s", account, passwd);
+		System.out.printf("%s, %s\n", account, passwd);
+		if (habbit != null) {
+			for (String h : habbit) {
+				System.out.print(h);
+			}
+		}
 	}
 
 }
