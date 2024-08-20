@@ -16,6 +16,8 @@ public class Brad13 extends HttpServlet {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Brad14");
 		
+		// model
+		
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().print("Hello, I am Brad13");
 		dispatcher.forward(request, response);
