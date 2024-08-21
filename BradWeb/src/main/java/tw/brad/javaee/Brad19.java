@@ -32,6 +32,17 @@ public class Brad19 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String key = request.getParameter("key");
+		String key2 = "%" + key + "%";
+		
+		String sql = "SELECT * FROM gift";
+		
+		if (key != null) {
+			sql = "SELECT * FROM gift WHERE name LIKE ? OR feature LIKE ? OR addr LIKE ?"; 
+		}
+		
+		
+		//--------------------------------
 		RequestDispatcher dispatcher = request.getRequestDispatcher("sform.html");
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -42,9 +53,14 @@ public class Brad19 extends HttpServlet {
 		out.print("<table border='1' width='100%'>");
 		out.print("<tr><th>ID</th><th>Name</th><th>Feature</th><th>Address</th><th>Photo</th></tr>");
 		
-		String sql = "SELECT * FROM gift";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			if (key != null) {
+				pstmt.setString(1, key2);
+				pstmt.setString(2, key2);
+				pstmt.setString(3, key2);
+			}
+			
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				String id = rs.getString("id");
