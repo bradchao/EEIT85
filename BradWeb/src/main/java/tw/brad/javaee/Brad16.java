@@ -24,7 +24,10 @@ public class Brad16 extends HttpServlet {
 			String webPage = BradUtils.loadView(view);
 			
 			// Show View
-			response.getWriter().printf(webPage, x, y, result);
+			webPage = webPage.replaceAll("@x@", x).replaceAll("@y@", y).replaceAll("@result@", result);
+			
+			
+			response.getWriter().print(webPage);
 			response.flushBuffer();
 		}catch(Exception e) {
 			response.getWriter().print("ERROR!");
