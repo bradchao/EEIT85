@@ -5,8 +5,10 @@ import java.io.File;
 import java.io.FileInputStream;
 
 public class BradUtils {
-	public static String loadView() throws Exception {
-		String source = "C:\\Users\\User\\git\\repository\\BradWeb\\src\\main\\webapp\\views\\view1.html";
+	// view => view1, view2, ....
+	public static String loadView(String view) throws Exception {
+		String source = String.format(
+			"C:\\Users\\User\\git\\repository\\BradWeb\\src\\main\\webapp\\views\\%s.html", view);
 		File viewFile = new File(source);
 		int len = (int)viewFile.length();
 		byte[] buf = new byte[len];

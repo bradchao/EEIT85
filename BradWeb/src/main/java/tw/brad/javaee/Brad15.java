@@ -29,10 +29,12 @@ public class Brad15 extends HttpServlet {
 			request.setAttribute("result", result);
 			request.setAttribute("x", x);
 			request.setAttribute("y", y);
+			request.setAttribute("view", "view2");
 		}catch(Exception e) {
 			request.setAttribute("result", "");
 			request.setAttribute("x", x==null?"":x);
 			request.setAttribute("y", y==null?"":y);
+			request.setAttribute("view", "view1");
 		}
 		
 		// 呈現 View

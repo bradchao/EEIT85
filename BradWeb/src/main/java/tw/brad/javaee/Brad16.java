@@ -17,10 +17,11 @@ public class Brad16 extends HttpServlet {
 		String result = (String)request.getAttribute("result");
 		String x = (String)request.getAttribute("x");
 		String y = (String)request.getAttribute("y");
+		String view = (String)request.getAttribute("view");
 		
 		try {
 			// Load View
-			String webPage = BradUtils.loadView();
+			String webPage = BradUtils.loadView(view);
 			
 			// Show View
 			response.getWriter().printf(webPage, x, y, result);
