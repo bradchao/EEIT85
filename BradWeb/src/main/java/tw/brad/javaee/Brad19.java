@@ -1,0 +1,75 @@
+package tw.brad.javaee;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/Brad19")
+public class Brad19 extends HttpServlet {
+	private Connection conn;
+	
+	public Brad19() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/iii", "root", "root");
+			System.out.println("OK");
+		} catch (Exception e) {
+			System.out.println("Oooop!");
+		}
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("sform.html");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		dispatcher.include(request, response);
+		
+		out.print("<table border='1' width='100%'>");
+		out.print("<tr><th>ID</th><th>Name</th><th>Feature</th><th>Address</th><th>Photo</th></tr>");
+		
+		String sql = "SELECT * FROM gift";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String name = rs.getString("name");
+				String feature = rs.getString("feature");
+				String addr = rs.getString("addr");
+				String picurl = rs.getString("picurl");
+				
+				out.println("<tr>");
+				out.printf("<td>%s</td>\n", id);
+				out.printf("<td>%s</td>\n", name);
+				out.printf("<td>%s</td>\n", feature);
+				out.printf("<td>%s</td>\n", addr);
+				out.printf("<td><img src='%s' width='160px' height='90px' /></td>\n", picurl);
+				out.println("</tr>");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		
+		out.print("</table>");
+		
+		response.flushBuffer();
+	
+	}
+
+}

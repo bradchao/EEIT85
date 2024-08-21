@@ -21,7 +21,10 @@ public class Brad18 extends HttpServlet {
 			throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		double rate = Double.parseDouble(request.getParameter("rate")) ;
+		double rate = 0;
+		try {
+			rate = Double.parseDouble(request.getParameter("rate")) ;
+		}catch(Exception e) {}
 
 		BufferedImage img = new BufferedImage(400, 20, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = img.createGraphics();
