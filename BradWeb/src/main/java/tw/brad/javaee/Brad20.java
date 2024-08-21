@@ -27,6 +27,11 @@ public class Brad20 extends HttpServlet {
 			System.out.println("Oooop!");
 		}    	
     }
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	resp.sendError(500, "Get out here");
+    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
