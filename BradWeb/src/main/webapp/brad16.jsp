@@ -19,7 +19,14 @@
 	</head>
 	<body>
 	<div><%= mesg %></div>
-	<form action="Register" method="post">
+	<script>
+		function checkForm(){
+			
+			
+			return true;
+		}
+	</script>
+	<form action="Register" method="post" onsubmit="return checkForm();">
 		Account : <input name="account" /><br />
 		Password : <input name="passwd" /><br />
 		Name : <input name="name" /><br />

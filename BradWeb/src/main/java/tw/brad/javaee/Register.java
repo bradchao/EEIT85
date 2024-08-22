@@ -37,7 +37,8 @@ public class Register extends HttpServlet {
 					response.sendRedirect("brad16.jsp?errType=3");
 				}
 			}catch(Exception e) {
-				response.sendRedirect("brad16.jsp?errType=2");
+				//response.sendRedirect("brad16.jsp?errType=2");
+				response.sendError(500, e.toString());
 			}
 		}else {
 			response.sendRedirect("brad16.jsp?errType=1");
