@@ -3,6 +3,7 @@ package tw.brad.apis;
 public class Member {
 	private int id;
 	private String account, passwd, name;
+	
 	public int getId() {
 		return id;
 	}
