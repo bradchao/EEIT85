@@ -3,6 +3,11 @@ package tw.brad.apis;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class BradUtils {
 	// view => view1, view2, ....
@@ -43,6 +48,27 @@ public class BradUtils {
 	public static String createScore() {
 		return (int)(Math.random()*101) + "";
 	}
+	
+	public static LinkedList<HashMap<String, String>> parseFood(String json) {
+		LinkedList<HashMap<String, String>> items = new LinkedList<>();
+		JSONArray root = new JSONArray(json);
+		System.out.println(root.length());
+		for (int i=0; i<root.length(); i++) {
+			JSONObject row = root.getJSONObject(i);
+			HashMap<String, String> item = new HashMap<>();
+			item.put("aid", row.getString("ID"));
+			item.put("aname", row.getString("Name"));
+			item.put("acity", row.getString("City"));
+			item.put("atown", row.getString("Town"));
+			item.put("apicurl", row.getString("PicURL"));
+			item.put("alat", row.getString("Latitude"));
+			item.put("alng", row.getString("Longitude"));
+			items.add(item);
+		}
+		
+		return items;
+	}
+	
 	
 	
 }
