@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			function search(){
+				$.get('brad52.jsp?orderId=' + $('#orderId').val(),
+					function(data,status){
+						if (status == 'success'){
+							$('#cid').html(data.CustomID);
+							$('#date').html(data.OrderDate);
+							
+							$('#table').empty();
+							
+							$(data.details).each(function(i, row){
+								$('#table').append(
+										'<tr>' +
+										'<td>' + row.ProductID +'</td>' +
+										'<td>' + row.ProductName +'</td>' +
+										'<td>' + row.UnitPrice +'</td>' +
+										'<td>' + row.Qty +'</td>' +
+										'<td>' + (row.UnitPrice*row.Qty) +'</td>' +
+										'</tr>'
+										);
+							});
+						}							
+					}
+				);
+			}
+		</script>
+	</head>
+	<body>
+	<h1>Brad Big Company</h1>
+	<hr />
+	Order ID: <input id="orderId" />
+	<input type="button" onclick="search()" value="Search" /><hr />
+	CustomID: <span id="cid"></span><br />
+	Date: <span id="date"></span><br />
+	<table id="table" width="100%" border="1">	
+	</table>
+
+	
+	</body>
+</html>
