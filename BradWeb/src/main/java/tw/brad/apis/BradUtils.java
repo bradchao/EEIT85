@@ -75,6 +75,9 @@ public class BradUtils {
 		if (rows.length > 0) {
 			root.put("OrderID", rows[0].getOrDefault("OrderID", ""));
 			root.put("CustomID", rows[0].getOrDefault("CustomerID", ""));
+			root.put("CustomName", rows[0].getOrDefault("CompanyName", ""));
+			root.put("EmployeeID", rows[0].getOrDefault("EmployeeID", ""));
+			root.put("LastName", rows[0].getOrDefault("LastName", ""));
 			root.put("OrderDate", rows[0].getOrDefault("OrderDate", ""));
 			
 			JSONArray details = new JSONArray();

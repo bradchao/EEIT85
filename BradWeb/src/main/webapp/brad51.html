@@ -9,7 +9,11 @@
 				$.get('brad52.jsp?orderId=' + $('#orderId').val(),
 					function(data,status){
 						if (status == 'success'){
+							console.log(data);
 							$('#cid').html(data.CustomID);
+							$('#cname').html('(' + data.CustomName + ')');
+							$('#eid').html(data.EmployeeID);
+							$('#ename').html('(' + data.LastName + ')');
 							$('#date').html(data.OrderDate);
 							
 							$('#table').empty();
@@ -36,7 +40,8 @@
 	<hr />
 	Order ID: <input id="orderId" />
 	<input type="button" onclick="search()" value="Search" /><hr />
-	CustomID: <span id="cid"></span><br />
+	EmployeeID: <span id="eid"></span><span id="ename"></span><br />
+	CustomID: <span id="cid"></span><span id="cname"></span><br />
 	Date: <span id="date"></span><br />
 	<table id="table" width="100%" border="1">	
 	</table>
