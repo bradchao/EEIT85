@@ -20,6 +20,7 @@ import tw.brad.apis.WSClient;
 public class MyCenter {
 	private static HashSet<Session> sessions;
 	private static HashMap<String,WSClient> users;	// <id, client>
+	private static boolean hasClient1;	// false	
 	
 	public MyCenter() {
 		if (sessions == null) {
@@ -46,8 +47,17 @@ public class MyCenter {
 		JSONObject root = new JSONObject(mesg);
 		if (root.getBoolean("isInit")) {
 			if (root.getBoolean("isClient1")) {
-				users.get(session.getId()).setClient1(true);
-				System.out.println("isClient1");
+				if (!hasClient1) {
+					hasClient1 = true;
+					users.get(session.getId()).setClient1(true);
+					System.out.println("isClient1");
+				}else {
+					System.out.println("remove");
+					try {
+						session.close();
+					} catch (IOException e) {
+					}
+				}
 			}else {
 				users.get(session.getId()).setClient1(false);
 				System.out.println("isClient2");
