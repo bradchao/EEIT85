@@ -19,7 +19,7 @@ import tw.brad.apis.WSClient;
 @ServerEndpoint("/mycenter")
 public class MyCenter {
 	private static HashSet<Session> sessions;
-	private static HashMap<String,WSClient> users;
+	private static HashMap<String,WSClient> users;	// <id, client>
 	
 	public MyCenter() {
 		if (sessions == null) {
@@ -42,6 +42,7 @@ public class MyCenter {
 	@OnMessage
 	public void onMessage(String mesg, Session session) {
 		System.out.println("onMessage:" + mesg);
+		
 		JSONObject root = new JSONObject(mesg);
 		if (root.getBoolean("isInit")) {
 			if (root.getBoolean("isClient1")) {
@@ -65,6 +66,9 @@ public class MyCenter {
 				sendMesg.put("y", root.getInt("y"));
 				System.out.println(root.getBoolean("isNewLine")?"newline":"drawline");
 			}
+			
+			// 廣播出去
+			System.out.println("===> " + sendMesg.toString());
 			
 			Set<String> ids = users.keySet();
 			for (String id : ids) {
