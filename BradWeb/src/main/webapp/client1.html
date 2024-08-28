@@ -4,16 +4,34 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script type="text/javascript">
-		let canvas, ctx;
+		let canvas, ctx, clear;
 		window.onload = function(){
+			clear = document.getElementById('clear');
 			canvas = document.getElementById('myDrawer');
 			ctx = canvas.getContext('2d');
 			
-			canvas.onmousedown = function(event){};
-			canvas.onmouseup = function(event){};
-			canvas.onmousemove = function(event){};
+			let isDrag = false;
+			canvas.onmousedown = function(event){
+				isDrag = true;
+				var x = event.offsetX, y = event.offsetY;
+				ctx.beginPath();
+				ctx.lineWidth = 4;
+				ctx.moveTo(x,y)
+			};
+			canvas.onmouseup = function(event){
+				isDrag = false;
+			};
+			canvas.onmousemove = function(event){
+				if (isDrag){
+					var x = event.offsetX, y = event.offsetY;
+					ctx.lineTo(x,y);
+					ctx.stroke();
+				}
+			};
 
-			
+			clear.onclick = function(){
+				ctx.clearRect(0,0,canvas.width, canvas.height);
+			};
 		}
 		
 		
