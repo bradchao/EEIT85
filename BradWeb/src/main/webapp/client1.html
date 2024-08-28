@@ -6,7 +6,7 @@
 		<script type="text/javascript">
 		let canvas, ctx, clear;
 		window.onload = function(){
-			let webSocket = new WebSocket('ws://localhost:8080/BradWeb/mycenter');
+			let webSocket = new WebSocket('ws://10.0.100.157:8080/BradWeb/mycenter');
 			webSocket.onopen = function(event){
 				// send message => I am client1
 				console.log("onOpen");
