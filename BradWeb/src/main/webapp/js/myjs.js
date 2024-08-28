@@ -8,7 +8,7 @@ window.onload = function(){
 	let webSocket;
 	
 	start.addEventListener('click', function(){
-		connect("ws://localhost:8080/BradWeb/myserver");
+		connect("ws://10.0.100.157:8080/BradWeb/myserver");
 	});
 	
 	send.addEventListener('click', function(){
@@ -16,6 +16,7 @@ window.onload = function(){
 			message: mesg.value 
 		};
 		webSocket.send(JSON.stringify(message));
+		mesg.value = '';
 	});
 	
 	start.style.display = 'block';
@@ -23,21 +24,26 @@ window.onload = function(){
 	
 	function connect(url){
 		webSocket = new WebSocket(url);
-		webSocket.onopen = function(){
+		webSocket.onopen = function(event){
 			console.log("onOpen");
 			
 			start.style.display = 'none';
 			mesgDiv.style.display = 'block';
 		};
 
-		webSocket.onclose = function(){
+		webSocket.onclose = function(event){
 			console.log("onClose");
 			start.style.display = 'block';
 			mesgDiv.style.display = 'none';
 		};
 
+		webSocket.onmessage = function(event){
+			console.log(event.data);
+			let backMesg = JSON.parse(event.data);
+			log.innerHTML += backMesg.message + "<br />";
+		};
 
-		webSocket.onerror = function(){
+		webSocket.onerror = function(event){
 			console.log("onError");
 		};
 		
