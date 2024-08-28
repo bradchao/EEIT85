@@ -32,7 +32,7 @@ public class MyServer {
 	}
 	
 	@OnError
-	public void onError(Session session) {
+	public void onError(Session session, Throwable t) {
 		System.out.println("onError");
 		
 	}
