@@ -50,6 +50,7 @@
 		Account: <input name="account" value="${rs.rows[0].account }" /><br />
 		Password: <input type="password" name="passwd" /><br />
 		Name:<input name="name" value="${rs.rows[0].name }" /><br />
+		
 		<input type="submit" value="Update" />
 	</form>		
 	</body>
