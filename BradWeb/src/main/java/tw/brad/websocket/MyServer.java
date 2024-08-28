@@ -18,8 +18,10 @@ public class MyServer {
 
 	public MyServer() {
 		System.out.println("MyServer");
-		sessions = new HashSet<Session>();
-		users = new HashMap<String, Session>();
+		if (sessions == null) {
+			sessions = new HashSet<Session>();
+			users = new HashMap<String, Session>();
+		}
 	}
 	
 	@OnOpen
@@ -47,13 +49,15 @@ public class MyServer {
 	
 	@OnClose
 	public void onClose(Session session) {
-		System.out.println("onClose");
+		users.remove(session.getId());
+		sessions.remove(session);
+		System.out.println("onClose:" + sessions.size());
 		
 	}
 	
 	@OnError
 	public void onError(Session session, Throwable t) {
-		System.out.println("onError");
+		System.out.println("onError:" + t.toString());
 		
 	}
 	
