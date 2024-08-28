@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">
+		let canvas, ctx;
+		window.onload = function(){
+			canvas = document.getElementById('myDrawer');
+			ctx = canvas.getContext('2d');
+			
+			canvas.onmousedown = function(event){};
+			canvas.onmouseup = function(event){};
+			canvas.onmousemove = function(event){};
+
+			
+		}
+		
+		
+		</script>
+	</head>
+	<body>
+	<button id='clear'>Clear</button>
+	<hr />
+	<canvas id='myDrawer' width='640px' height='480px' style='border:1px solid #000'></canvas>		
+	<hr />
+	</body>
+</html>

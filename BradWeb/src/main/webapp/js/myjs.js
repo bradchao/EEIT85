@@ -49,6 +49,4 @@ window.onload = function(){
 		
 	}
 	
-	
-	
 }
