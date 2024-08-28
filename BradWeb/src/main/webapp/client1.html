@@ -6,6 +6,29 @@
 		<script type="text/javascript">
 		let canvas, ctx, clear;
 		window.onload = function(){
+			let webSocket = new WebSocket('ws://localhost:8080/BradWeb/mycenter');
+			webSocket.onopen = function(event){
+				// send message => I am client1
+				console.log("onOpen");
+				let message = {
+						isClient1: true,
+						isInit : true
+					};
+				webSocket.send(JSON.stringify(message));
+			};
+			webSocket.onmessage = function(event){
+				// do nothing
+				// debug
+				console.log("onMessage");
+			};
+			webSocket.onclose = function(event){
+				console.log("onClose");
+			};
+			webSocket.onerror = function(event){
+				console.log("onError");
+			};
+			
+			
 			clear = document.getElementById('clear');
 			canvas = document.getElementById('myDrawer');
 			ctx = canvas.getContext('2d');
@@ -17,6 +40,16 @@
 				ctx.beginPath();
 				ctx.lineWidth = 4;
 				ctx.moveTo(x,y)
+				
+				let message = {
+					isInit : false,
+					isClear : false,
+					isNewLine : true,
+					x : x,
+					y : y
+				};
+				webSocket.send(JSON.stringify(message));
+				
 			};
 			canvas.onmouseup = function(event){
 				isDrag = false;
@@ -26,11 +59,29 @@
 					var x = event.offsetX, y = event.offsetY;
 					ctx.lineTo(x,y);
 					ctx.stroke();
+					
+					let message = {
+						isInit : false,
+						isClear : false,
+						isNewLine : false,
+						x : x,
+						y : y
+					};
+					webSocket.send(JSON.stringify(message));
+					
+					
 				}
 			};
 
 			clear.onclick = function(){
 				ctx.clearRect(0,0,canvas.width, canvas.height);
+				
+				let message = {
+						isInit : false,
+						isClear : true,
+					};
+				webSocket.send(JSON.stringify(message));
+				
 			};
 		}
 		
