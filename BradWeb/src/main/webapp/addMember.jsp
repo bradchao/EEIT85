@@ -33,11 +33,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			function isAccountExist(){
-				console.log("checking...");
 				$.get("isAccountExist.jsp?account=" + $('#account').val(),function(data,status){
-					console.log("check finish")
 					if (status == 'success'){
-						$('#mesg').html("Account EXIST");
+						$('#mesg').html(data.count>0?"Account EXIST":"");
 					}
 				});
 			}
@@ -47,7 +45,7 @@
 	Add Member Page
 	<hr />
 	<form action="Brad22" method="post" enctype="multipart/form-data">
-		Account: <input name="account" onblur='isAccountExist()' /><span id='mesg'></span><br />
+		Account: <input name="account" id="account" onblur='isAccountExist()' /><span id='mesg'></span><br />
 		Password: <input type="password" name="passwd" /><br />
 		Name:<input name="name" /><br />
 		Icon: <input type="file" name="icon" /><br />
