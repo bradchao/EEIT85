@@ -34,7 +34,7 @@
 	<body>
 	Add Member Page
 	<hr />
-	<form action="Brad21" method="post" enctype="multipart/form-data">
+	<form action="Brad22" method="post" enctype="multipart/form-data">
 		Account: <input name="account" /><br />
 		Password: <input type="password" name="passwd" /><br />
 		Name:<input name="name" /><br />
