@@ -16,10 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter("/*")
 public class MyFilter extends HttpFilter implements Filter {
 	
+	
+	
+	
 	@Override
 	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
+		System.out.println("Filter1");
+
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
