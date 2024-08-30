@@ -21,9 +21,6 @@
 	
 <c:choose>
 	<c:when test="${!empty param.editid }">
-		<%
-			System.out.println("debug2" + request.getParameter("editid"));
-		%>
 		<sql:query var="rs">
 			SELECT * FROM member WHERE id = ?
 			<sql:param>${param.editid }</sql:param>
@@ -53,9 +50,6 @@
 	</c:when>
 	
 	<c:otherwise>
-		<%
-			System.out.println("debug" + ((Member)session.getAttribute("editMember")).getAccount());
-		%>
 		<c:if test="${pageContext.request.method != 'POST' }">
 		</c:if>
 		<sql:update var="n">
